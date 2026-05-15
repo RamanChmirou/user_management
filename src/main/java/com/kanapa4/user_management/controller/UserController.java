@@ -6,7 +6,6 @@ import com.kanapa4.user_management.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
