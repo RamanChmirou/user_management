@@ -4,6 +4,7 @@ import com.kanapa4.user_management.model.ChangePasswordCommand;
 import com.kanapa4.user_management.model.User;
 import com.kanapa4.user_management.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -17,7 +18,8 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody User user) {
         return userService.create(user);
     }
@@ -28,11 +30,13 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         userService.delete(id);
     }
 
     @PatchMapping("{id}/password")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void changePassword(@PathVariable long id, @RequestBody ChangePasswordCommand password) {
         userService.changePassword(id, password.getPassword());
     }
